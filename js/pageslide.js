@@ -10,11 +10,13 @@
 				collect();
 				slide();
 			},
+			
 			collect = function(){
 				$menu = $(c.menu),
 				$li = $menu.find('li'),
 				$links = $menu.find('a');
 			},
+			
 			slide = function(){
 				$menu.delegate('a', 'click', function(e){
 					e.preventDefault();
@@ -27,8 +29,10 @@
 					}
 				});
 			},
+			
 			helper = {
 				getCurrentMenuIndex : function(){
+					// TODO: -1 should be replaced by the active link class in the menu
 					return $menu.data('pos') !== undefined ? $menu.data('pos') : -1;
 				},
 				getClickedMenuIndex : function(link){
@@ -54,6 +58,7 @@
 					return direction;
 				}
 			},
+			
 			animation = {
 				forward : function(){
 					// forward animation
@@ -61,11 +66,11 @@
 						top : '0%',
 						height: 'toggle'
 					},callbackTrack());
+					
 					// hide the current div
 					$currentWrapper.animate({
 						top : '-100%'
 					},callbackTrack());
-					// show the new div
 				},
 				backwards : function(){
 					// backwards animation
@@ -73,21 +78,21 @@
 						top : '0%',
 						height: 'toggle'
 					},callbackTrack());
+					
 					// hide the current div
 					$currentWrapper.animate({
 						top : '+100%'
 					},callbackTrack());
-					// show the new div
 				},
-				allDone : function(){
+				done : function(){
 					$currentWrapper.remove();
 					$newWrapper.attr('class', 'ps-current');
 				}
-			};
+			},
 			callbackTrack = function(d){
 				callbackTrack.queue = callbackTrack.queue || [false];
 				if (d === 'done'){
-					if(callbackTrack.queue.shift() && callbackTrack.queue.length == 1) animation.allDone();
+					if(callbackTrack.queue.shift() && callbackTrack.queue.length == 1) animation.done();
 					return;
 				}
 				callbackTrack.queue.push(true);
@@ -96,14 +101,17 @@
 		init();
 	}
 	
-	
+	// pageslide options
 	$.fn.pageslide.defaults = {
 		menu : '#menu',
 		currentDiv : 'ps-current' // current div element class
 	}
 	
-	$('#ps-wrapper').pageslide({
-		menu : '#menu'
-	});
+	// example call
+	$(document).ready(function(){
+		$('#ps-wrapper').pageslide({
+			menu : '#menu'
+		});
+	})
 	
 })(jQuery)
