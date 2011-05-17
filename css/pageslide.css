@@ -19,6 +19,10 @@ html{
 	line-height: 20px;
 }
 
+#menu a.active{
+	font-weight: bold;
+}
+
 /* pageslide wrapper around our nested divs */
 #ps-wrapper{
 	height: 100%;

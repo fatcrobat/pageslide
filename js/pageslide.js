@@ -28,6 +28,9 @@
 						$newWrapper = $('<div class="ps-sliding"><h1>'+$this.text()+'</h1></div>');
 						// run our animation
 						animation[direction]();
+						// highlight menu item -- TODO: store in helper function
+						$links.removeClass('active');
+						$this.addClass('active');
 					}
 				});
 			},
@@ -45,14 +48,12 @@
 				},
 				getDirection : function(pos){
 					var direction, current = helper.getCurrentMenuIndex();
-					
 					// next element has been clicked
 					if(current < pos) direction = 'forward';
 					// previous element has been clicked
 					else if(current > pos) direction = 'backwards';
 					
 					helper.setMenuIndex(pos);
-
 					return direction;
 				}
 			},
@@ -83,7 +84,9 @@
 					},callbackTrack());
 				},
 				done : function(){
+					// remove the old div
 					$currentWrapper.remove();
+					// make new div to current 
 					$newWrapper.attr('class', 'ps-current');
 				}
 			},
