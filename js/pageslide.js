@@ -24,7 +24,9 @@
 						$this = $(this),
 						direction = helper.getDirection(helper.getClickedMenuIndex($this)),
 						$currentWrapper = $slide.find('.ps-current'),
+						// replace the div content with ajax data
 						$newWrapper = $('<div class="ps-sliding"><h1>'+$this.text()+'</h1></div>');
+						// run our animation
 						animation[direction]();
 					}
 				});
@@ -43,18 +45,14 @@
 				},
 				getDirection : function(pos){
 					var direction, current = helper.getCurrentMenuIndex();
-					if(current < pos){
-						// next element has been clicked
-						direction = 'forward';
-					}
-					else if(current > pos){
-						// previous element has been clicked
-						direction = 'backwards';
-					}
-					else{
-						// current element has been clicked
-					}
+					
+					// next element has been clicked
+					if(current < pos) direction = 'forward';
+					// previous element has been clicked
+					else if(current > pos) direction = 'backwards';
+					
 					helper.setMenuIndex(pos);
+
 					return direction;
 				}
 			},
