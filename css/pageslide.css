@@ -1,0 +1,50 @@
+html, body{
+	height: 100%;
+}
+
+html{
+	overflow: hidden;
+}
+
+/* menu, absolute positioned */
+#menu{
+	list-style: none outside none;
+	position: absolute;
+	right: 0;
+	top:0;
+	height: 400px;
+	width: 220px;
+	background-color: #faceb0;
+	padding: 20px;
+	line-height: 20px;
+}
+
+/* pageslide wrapper around our nested divs */
+#ps-wrapper{
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+/* current visible pageslide */
+.ps-current{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.ps-sliding{
+	width: 100%;
+	position: absolute;
+	display: none;
+}
+
+.ps-backwards{
+	top: -100%;
+}
+
+.ps-forward{
+	top: 100%;
+}
